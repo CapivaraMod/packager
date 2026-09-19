@@ -1020,7 +1020,7 @@ cd "$(dirname "$0")"
     let storageProgressStart;
     let storageProgressEnd;
 
-    if (this.options.target === 'html') {
+    if (this.options.target === 'html' || (this.options.target.startsWith('zip') && this.project.type !== 'blob')) {
       isZip = this.project.type !== 'blob';
       storageProgressStart = PROGRESS_FETCHED_COMPRESSED;
       storageProgressEnd = PROGRESS_EXTRACTED_COMPRESSED;
@@ -1141,6 +1141,9 @@ cd "$(dirname "$0")"
           }
         });
         return () => (${getProjectDataFunction})().then(async (data) => {
+          if (!Scaffolding.JSZip || typeof Scaffolding.JSZip.loadAsync !== 'function') {
+            throw new Error('The scaffolding bundle is incompatible with the Zip environment. Rebuild the project with the current packager.');
+          }
           zip = await Scaffolding.JSZip.loadAsync(data);
           const file = findFileInZip('project.json');
           if (!file) {
@@ -1693,7 +1696,7 @@ cd "$(dirname "$0")"
 
     if (this.options.target !== 'html') {
       let zip;
-      if (this.project.type === 'sb3' && this.options.target !== 'zip-one-asset') {
+      if (this.project.type === 'sb3' && !this.options.target.startsWith('zip')) {
         zip = await (await getJSZip()).loadAsync(this.project.arrayBuffer);
         for (const file of Object.keys(zip.files)) {
           zip.files[`assets/${file}`] = zip.files[file];
