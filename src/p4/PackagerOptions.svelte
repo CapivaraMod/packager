@@ -359,7 +359,12 @@
         {$_('options.storedWarning')}
       </div>
     {/if}
-
+    {#if projectData.project.type === 'sb3'}
+      <label class="option">
+        <input type="checkbox" bind:checked={$options.ofuscar}>
+        {$_('options.ofuscar')}
+      </label>
+    {/if}
     <label class="option">
       <input type="checkbox" bind:checked={$options.turbo}>
       {$_('options.turbo')}

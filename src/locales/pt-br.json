@@ -109,6 +109,7 @@
         "startWindow": "Iniciar em modo janela",
         "storedWarning": "Nota: Este projeto tem configurações armazenadas nele, que podem sobrepor-se a estas configurações.",
         "stretch": "Esticar o palco para preencher a tela sem alterar o tamanho real (experimental)",
+        "ofuscar": "Ofuscar projeto",
         "turbo": "Modo Turbo",
         "unsafeCloudBehaviors": "Funções inseguras para variáveis na nuvem especiais",
         "unsafeCloudBehaviorsWarning": "Comportamentos inseguros de variáveis na nuvem permitem que o projeto exportado execute código arbitrário fora da \"caixa de areia\" na qual os projetos normalmente rodam. Dependendo do dispositivo para o qual você está exportando, isto concede aos projetos controle total sobre o mesmo, incluindo a capacidade de instalar vírus. Se você não confiar no projeto que está empacotando, por favor, desligue esta opção.",

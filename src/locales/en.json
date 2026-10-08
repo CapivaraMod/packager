@@ -186,6 +186,9 @@
     "storedWarning": {
       "string": "Note: This project has settings stored in it, which may override these settings."
     },
+    "ofuscar": {
+      "string": "Obfuscate project"
+    },
     "turbo": {
       "string": "Turbo Mode"
     },

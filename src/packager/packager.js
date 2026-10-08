@@ -12,6 +12,7 @@ import {OutdatedPackagerError} from '../common/errors';
 import {darken} from './colors';
 import {Adapter} from './adapter';
 import encodeBigString from './encode-big-string';
+import obfuscateSB3Project from './obfuscate-sb3';
 
 const PROGRESS_LOADED_SCRIPTS = 0.1;
 
@@ -1244,6 +1245,9 @@ cd "$(dirname "$0")"
     }
     this.used = true;
     this.ensureNotAborted();
+    if (this.options.ofuscar) {
+      this.project = await obfuscateSB3Project(this.project, this.options, await getJSZip());
+    }
     await this.loadResources();
     this.ensureNotAborted();
     const faviconExtension = this.options.app.icon && ({
@@ -1778,6 +1782,7 @@ Packager.usesUnsafeOptions = (options) => {
 };
 
 Packager.DEFAULT_OPTIONS = () => ({
+  ofuscar: false,
   turbo: false,
   interpolation: false,
   framerate: 30,
